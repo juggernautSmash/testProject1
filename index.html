@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SuperDuperAwesomeFridgeRaidingFoodinator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Local CSS-->
+  <link type="text/css" rel="stylesheet" href="./assets/css/reset.css">
+  <link type="text/css" rel="stylesheet" href="./assets/css/style.css">
+  <!-- Materilize CDN-->
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'>
+  <!--Import Google Icon Font-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <!-- Firbase CDNs-->
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/4.2.0/firebaseui.css">
+</head>
+
+<body class='background'>
+  <nav><!-- Header Navbar-->
+    <div class="nav-wrapper blue-grey darken-4 ">
+      <a id="home" class=left><i class="material-icons">home</i></a>
+      <a href="#" class="brand-logo center blue-grey-text text-lighten-4">SDAFRF</a>
+      <a href="#" data-target="mobile-menu" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down ">
+        <li><a class="blue-grey-text text-lighten-4" href="profile.html">Profile</a></li>
+        <li><a class="blue-grey-text text-lighten-4" href="settings.html">Settings</a></li>
+        <li><a class="blue-grey-text text-lighten-4" href="recipes.html">Recipes</a></li>
+        <li><a class="blue-grey-text text-lighten-4 signOut" href="index.html">Sign Out</a></li>
+      </ul>
+      <!-- Navigation for mobile menu-->
+      <ul class="sidenav blue-grey " id="mobile-menu">
+        <li><a class="blue-grey-text text-lighten-4" href="profile.html">Profile</a></li>
+        <li><a class="blue-grey-text text-lighten-4" href="settings.html">Settings</a></li>
+        <li><a class="blue-grey-text text-lighten-4" href="recipes.html">Recipes</a></li>
+        <li><a class="blue-grey-text text-lighten-4 signOut" href="index.html">Sign Out</a></li>
+      </ul>
+    </div>
+  </nav><!--End Navbar-->
+  <div class='container'>
+    <div class='row'>
+      <div class="center">
+        <h3 id='welcome'>Welcome to the Super Duper Awesome Fridge Raiding Foodinator</h3>
+      </div>
+      <div class="center">
+        <h4 id='intro'>The app that helps you get recipes based on what ingredients you have.</h4>
+      </div>
+    </div>
+    <div class='row'>
+        <!-- Firebase Auth Info -->
+        <div id="firebaseui-auth-container"></div>
+      </div>
+    </div>
+      
+      <!-- Footer stuff goes here -->
+      <div></div>
+  </div>
+
+  <!-- Materialize JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- Firebase JS-->
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-auth.js"></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/4.2.0/firebaseui.js"></script>
+  <!-- Login JS -->
+  <script src="./assets/js/firebaseInit.js"></script>
+  <script src="./assets/js/login.js"></script>
+  <script>
+    //Initialize nav bar
+    document.addEventListener('DOMContentLoaded', function () {
+      const elems = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(elems, { edge: 'right' });
+    });
+  </script>
+</body>
+
+</html>
