@@ -1,3 +1,5 @@
+console.log('tabs.js is linked')
+
 // Tabs
 const allResultsElem = document.getElementById('allResults')
 const yesMakeElem = document.getElementById('yesMake')

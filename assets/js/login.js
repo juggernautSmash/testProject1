@@ -1,3 +1,5 @@
+console.log('login.js is linked')
+
 // FirebaseUI config.
 const uiConfig = {
     signInSuccessUrl: './profile.html',
@@ -25,7 +27,7 @@ firebase.auth().onAuthStateChanged(user => {
             }
 
         //push user info to firestore
-        testDb.collection('testDb').doc(user.email).set(userObj)
+        usersDb.doc(user.email).set(userObj)
         //push email to localStorage
         localStorage.setItem('email', user.email)
 
@@ -35,5 +37,6 @@ firebase.auth().onAuthStateChanged(user => {
 
         //Remove email from local storage
         localStorage.removeItem('email')
+        localStorage.removeItem('myFood')
     }
 })

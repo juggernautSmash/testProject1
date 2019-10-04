@@ -1,3 +1,5 @@
+console.log('fetchRecipes.js is linked')
+
 let userIngredients = []
 let selectedIngredients = []
 let apiKey = '1627e18e0caa4fd4890ad8754a8f6ed8'
