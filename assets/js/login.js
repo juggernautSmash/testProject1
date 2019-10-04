@@ -18,7 +18,7 @@ ui.start('#firebaseui-auth-container', uiConfig)
 firebase.auth().onAuthStateChanged(user => {
     if (user) { // If signed in, disable sign in button and enable sign out button
         //document.getElementById('firebaseui-auth-container').style.display = 'none'
-        document.querySelectorAll('.signOut').classList.remove('hide')
+        //document.getElementsByClassName('signOut').classList.remove('hide')
 
         // User is signed in.
         let userObj = {
@@ -33,10 +33,15 @@ firebase.auth().onAuthStateChanged(user => {
 
     } else { // if signed out display sign in button and disable sign out button
         //document.getElementById('firebaseui-auth-container').style.display = 'block'
-        document.querySelectorAll('.signOut').classList += 'hide'
+        //document.getElementsByClassName('signOut').classList += 'hide'
 
         //Remove email from local storage
         localStorage.removeItem('email')
         localStorage.removeItem('myFood')
     }
 })
+
+// Add sign off button
+document.getElementsByClassName('signOut').addEventListener('click', e => {
+    firebase.auth().signOut()
+  })
