@@ -48,15 +48,17 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s6 ">
-                        <input placeholder="Enter Password" id="password" type="text" class="validate">
+                        <input placeholder="Enter Password" id="pass" type="password" class="validate">
                         <label for="password">Password</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col s6 center">
-                        <button type="submit" name="action" id="login"
+                        <button onclick="turnToDots()" id="passBtn" class="waves-effect waves-teal btn">Show
+                        Password</button>
+                        <button type="submit" id="login"
                             class="waves-effect waves-red blue-grey darken btn">Login</button>
-                        <button type="submit" name="action" id="signUp"
+                        <button type="submit" id="signUp"
                         class="waves-effect waves-red blue-grey darken btn">Sign Up</button>
                     </div>
                 </div>
@@ -98,16 +100,16 @@
             const instances = M.Sidenav.init(elems, { edge: 'right' });
         });
 
-        // // Script to toggle 'Show Pasword' on/off.
-        // function myFunction() {
-        //     event.preventDefault()
-        //     var x = document.getElementById("myInput");
-        //     if (x.type === "password") {
-        //         x.type = "text";
-        //     } else {
-        //         x.type = "password";
-        //     }
-        // }
+        // Script to toggle 'Show Pasword' on/off.
+        function turnToDots() {
+            event.preventDefault()
+            var x = document.getElementById("pass");
+            if (x.type === "password") {
+                x.type = "text"
+            } else {
+                x.type = "password" 
+            }
+        }
 
         // Storing users into firebase through log in.
         // console.log(firebase)

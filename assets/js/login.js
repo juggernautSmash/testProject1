@@ -20,16 +20,21 @@ const auth = firebase.auth()
 
 // Get elements
 const emailIn = document.getElementById('email')
-const passwordIn = document.getElementById('password')
+const passwordIn = document.getElementById('pass')
 const loginBtn = document.getElementById('login')
 const signUpBtn = document.getElementById('signUp')
 const signOutBtn = document.getElementById('signOut')
 const signOutBtnM = document.getElementById('signOutm')
 
 loginBtn.addEventListener('click', e => {
+    e.preventDefault()
     // Get email and password
     const email = emailIn.value
     const password = passwordIn.value
+    console.log(`
+    email is ${email}
+    password is ${password}
+    `)
 
     auth.signInWithEmailAndPassword(email, password)
     .then(r => {
@@ -40,10 +45,11 @@ loginBtn.addEventListener('click', e => {
     .catch(error => {
         console.log('an error has occured')
         console.log(e.message)
-    });
+    })
 })
 
 signUpBtn.addEventListener('click', e => {
+    e.preventDefault()
     // Get email and password
     const email = emailIn.value
     const password = passwordIn.value
