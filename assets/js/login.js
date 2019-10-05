@@ -35,7 +35,7 @@ loginBtn.addEventListener('click', e => {
     .then(r => {
         console.log('login successful')
         console.log(r)
-        
+
     })
     .catch(error => {
         console.log('an error has occured')
@@ -62,18 +62,22 @@ signUpBtn.addEventListener('click', e => {
 auth.onAuthStateChanged(user => {
     if (user) { // If signed in, disable sign in button and enable sign out button
         //document.getElementById('firebaseui-auth-container').style.display = 'none'
+        console.log(`user is signed in`)
         document.getElementById('signOut').classList.remove('hide')
         document.getElementById('signOutm').classList.remove('hide')
 
         //Check if the user exists
         //let exists = false
+        console.log(`user email is ${user.email}`)
         usersDb.doc(user.email).get().then( r => {
             if( r.exists ){//If the user exists
                 //push email to localStorage
-                localStorage.setItem('email', r.data().email)
-                localStorage.setItem('myFood', r.data().myFood)
-                localStorage.setItem('myRecipes'), r.data().myRecipes
+                console.log(`user exists`)
+                localStorage.setItem('email', JSON.stringify(r.data().email))
+                localStorage.setItem('myFood', JSON.stringify(r.data().myFood))
+                localStorage.setItem('myRecipes', JSON.stringify(r.data().myRecipes))
             } else {// if the user does not exist, most likely  new user
+                console.log(`user does not exist`)
                 //Create a user profile in firestore 
                 let userObj = {
                     displayName: user.displayName,
@@ -84,6 +88,7 @@ auth.onAuthStateChanged(user => {
         })
     } else { // if signed out display sign in button and disable sign out button
         //document.getElementById('firebaseui-auth-container').style.display = 'block'
+        console.log(`user is signed out`)
         document.getElementById('signOut').classList += 'hide'
         document.getElementById('signOutm').classList += 'hide'
 
