@@ -18,22 +18,30 @@ ui.start('#firebaseui-auth-container', uiConfig)
 firebase.auth().onAuthStateChanged(user => {
     if (user) { // If signed in, disable sign in button and enable sign out button
         //document.getElementById('firebaseui-auth-container').style.display = 'none'
-        //document.getElementsByClassName('signOut').classList.remove('hide')
+        document.getElementById('signOut').classList.remove('hide')
+        document.getElementById('signOutm').classList.remove('hide')
 
-        // User is signed in.
-        let userObj = {
-            displayName: user.displayName,
-            email: user.email
+        //Check if the user exists
+        //let exists = false
+        usersDb.doc(user.email).get().then( r => {
+            if( r.exists ){//If the user exists
+                //push email to localStorage
+                localStorage.setItem('email', r.data().email)
+                localStorage.setItem('myFood', r.data().myFood)
+                localStorage.setItem('myRecipes'), r.data().myRecipes
+            } else {// if the user does not exist, most likely  new user
+                //Create a user profile in firestore 
+                let userObj = {
+                    displayName: user.displayName,
+                    email: user.email
+                    }
+                usersDb.doc(user.email).set(userObj)
             }
-
-        //push user info to firestore
-        usersDb.doc(user.email).set(userObj)
-        //push email to localStorage
-        localStorage.setItem('email', user.email)
-
+        })
     } else { // if signed out display sign in button and disable sign out button
         //document.getElementById('firebaseui-auth-container').style.display = 'block'
-        //document.getElementsByClassName('signOut').classList += 'hide'
+        document.getElementById('signOut').classList += 'hide'
+        document.getElementById('signOutm').classList += 'hide'
 
         //Remove email from local storage
         localStorage.removeItem('email')

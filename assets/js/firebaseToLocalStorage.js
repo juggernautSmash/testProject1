@@ -1,6 +1,3 @@
-
-
-
 if (localStorage.getItem('email')) {
   let email = localStorage.getItem('email')
 } else {
