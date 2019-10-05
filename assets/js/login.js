@@ -84,6 +84,7 @@ auth.onAuthStateChanged(user => {
                     email: user.email
                     }
                 usersDb.doc(user.email).set(userObj)
+                localStorage.setItem('email', user.email)
             }
         })
     } else { // if signed out display sign in button and disable sign out button
