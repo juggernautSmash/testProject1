@@ -100,10 +100,10 @@ auth.onAuthStateChanged(user => {
 })
 
 // Add sign off button
-document.getElementsById('signOut').addEventListener('click', e => {
+document.getElementById('signOut').addEventListener('click', e => {
     auth.signOut()
   })
 
-  document.getElementsById('signOutm').addEventListener('click', e => {
+  document.getElementById('signOutm').addEventListener('click', e => {
     auth.signOut()
   })
