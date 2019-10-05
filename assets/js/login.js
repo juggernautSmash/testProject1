@@ -2,7 +2,7 @@ console.log('login.js is linked')
 
 // FirebaseUI config.
 const uiConfig = {
-    signInSuccessUrl: './profile.html',
+    //signInSuccessUrl: './profile.html',
     signInOptions: [
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
         firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
@@ -76,7 +76,7 @@ auth.onAuthStateChanged(user => {
                 localStorage.setItem('email', JSON.stringify(r.data().email))
                 localStorage.setItem('myFood', JSON.stringify(r.data().myFood))
                 localStorage.setItem('myRecipes', JSON.stringify(r.data().myRecipes))
-            } else {// if the user does not exist, most likely  new user
+            } else {// if the user does not exist, most likely new user
                 console.log(`user does not exist`)
                 //Create a user profile in firestore 
                 let userObj = {
