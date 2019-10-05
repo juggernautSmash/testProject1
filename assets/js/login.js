@@ -103,3 +103,7 @@ auth.onAuthStateChanged(user => {
 document.getElementsByClassName('signOut').addEventListener('click', e => {
     auth.signOut()
   })
+
+  document.getElementsByClassName('signOutm').addEventListener('click', e => {
+    auth.signOut()
+  })
