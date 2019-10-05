@@ -25,6 +25,10 @@ ul {
   -moz-columns: 2;
 }
 
+li {
+  color: #cfd8dc;
+}
+
 /* Search Recipes Button*/
 #searchRecipes {
   color: #cfd8dc;

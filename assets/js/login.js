@@ -5,17 +5,61 @@ const uiConfig = {
     signInSuccessUrl: './profile.html',
     signInOptions: [
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
         firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
     ]
 }
 
 // Initialize the FirebaseUI Widget using Firebase.
 const ui = new firebaseui.auth.AuthUI(firebase.auth())
+
 // The start method will wait until the DOM is loaded.
 ui.start('#firebaseui-auth-container', uiConfig)
 
-firebase.auth().onAuthStateChanged(user => {
+// simplify auth method
+const auth = firebase.auth()
+
+// Get elements
+const emailIn = document.getElementById('email')
+const passwordIn = document.getElementById('password')
+const loginBtn = document.getElementById('login')
+const signUpBtn = document.getElementById('signUp')
+const signOutBtn = document.getElementById('signOut')
+const signOutBtnM = document.getElementById('signOutm')
+
+loginBtn.addEventListener('click', e => {
+    // Get email and password
+    const email = emailIn.value
+    const password = passwordIn.value
+
+    auth.signInWithEmailAndPassword(email, password)
+    .then(r => {
+        console.log('login successful')
+        console.log(r)
+        
+    })
+    .catch(error => {
+        console.log('an error has occured')
+        console.log(e.message)
+    });
+})
+
+signUpBtn.addEventListener('click', e => {
+    // Get email and password
+    const email = emailIn.value
+    const password = passwordIn.value
+
+    auth.createUserWithEmailAndPassword(email, password)
+    .then(r => {
+        console.log('login successful')
+        console.log(r)
+    })
+    .catch(error => {
+        console.log('an error has occured')
+        console.log(e.message)
+    });
+})
+
+auth.onAuthStateChanged(user => {
     if (user) { // If signed in, disable sign in button and enable sign out button
         //document.getElementById('firebaseui-auth-container').style.display = 'none'
         document.getElementById('signOut').classList.remove('hide')
@@ -51,5 +95,5 @@ firebase.auth().onAuthStateChanged(user => {
 
 // Add sign off button
 document.getElementsByClassName('signOut').addEventListener('click', e => {
-    firebase.auth().signOut()
+    auth.signOut()
   })
