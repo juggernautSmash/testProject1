@@ -17,7 +17,7 @@ const usersDb = firebase.firestore().collection('users')
 
 // FirebaseUI config.
 const uiConfig = {
-    signInSuccessUrl: './index.html',
+    signInSuccessUrl: './profile.html',
     signInOptions: [
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
         firebase.auth.EmailAuthProvider.PROVIDER_ID,
