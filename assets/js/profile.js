@@ -1,5 +1,5 @@
 console.log('profile.js is linked')
-console.log('getting email info in localStorae')
+console.log('getting email info in localStorage')
 let email = localStorage.getItem('email')
 console.log(`email is ${email}`)
 let userIngredients = []
@@ -152,4 +152,5 @@ document.addEventListener('click', ({target}) => {
     }// end if
 })// end event listener
 
+setTimeout(getProfile() , 5000)
 getProfile()
