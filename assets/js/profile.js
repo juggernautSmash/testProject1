@@ -153,4 +153,3 @@ document.addEventListener('click', ({target}) => {
 })// end event listener
 
 setTimeout(getProfile() , 5000)
-getProfile()
