@@ -192,7 +192,7 @@ auth.onAuthStateChanged(user => {
             }
         })
         console.log(`running getProfile`)
-        getProfile()
+        setTimeout(getProfile, 5000)
 
     } else { // if signed out display sign in button and disable sign out button
         //document.getElementById('firebaseui-auth-container').style.display = 'block'
