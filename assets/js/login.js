@@ -52,33 +52,33 @@ auth.onAuthStateChanged(user => {
         email = user.email
         console.log(`email is now ${email}`)
         console.log(`running syncUser in 10 seconds`)
-        setTimeout(syncUser, 10000)
-        // usersDb.doc(user.email).get().then( r => {
-        //     if( r.exists ){//If the user exists
-        //         //push email to localStorage
-        //         console.log(`user exists`)
-        //         console.log(`storing user info from firebase to localStorage`)
-        //         localStorage.setItem('email', r.data().email)
-        //         localStorage.setItem('myFood', JSON.stringify(r.data().myFood))
-        //         localStorage.setItem('myRecipes', JSON.stringify(r.data().myRecipes))
-        //     } else {// if the user does not exist, most likely new user
-        //         console.log(`user does not exist`)
-        //         console.log(`creating user profile in firestore`)
-        //         //Create a user profile in firestore 
-        //         let userObj = {
-        //             displayName: user.displayName,
-        //             email: user.email,
-        //             myFood: [],
-        //             myRecipes: [],
-        //             allergies: []
-        //             }
-        //         console.log(`storing generated user info to localStorage`)
-        //         usersDb.doc(user.email).set(userObj)
-        //         localStorage.setItem('email', userObj.email)
-        //         localStorage.setItem('myFood', JSON.stringify(userObj.myFood))
-        //         localStorage.setItem('myRecipes', JSON.stringify(userObj.myRecipes))            
-        //     }
-        // })
+        // setTimeout(syncUser, 10000)
+        usersDb.doc(user.email).get().then( r => {
+            if( r.exists ){//If the user exists
+                //push email to localStorage
+                console.log(`user exists`)
+                console.log(`storing user info from firebase to localStorage`)
+                localStorage.setItem('email', r.data().email)
+                localStorage.setItem('myFood', JSON.stringify(r.data().myFood))
+                localStorage.setItem('myRecipes', JSON.stringify(r.data().myRecipes))
+            } else {// if the user does not exist, most likely new user
+                console.log(`user does not exist`)
+                console.log(`creating user profile in firestore`)
+                //Create a user profile in firestore 
+                let userObj = {
+                    displayName: user.displayName,
+                    email: user.email,
+                    myFood: [],
+                    myRecipes: [],
+                    allergies: []
+                    }
+                console.log(`storing generated user info to localStorage`)
+                usersDb.doc(user.email).set(userObj)
+                localStorage.setItem('email', userObj.email)
+                localStorage.setItem('myFood', JSON.stringify(userObj.myFood))
+                localStorage.setItem('myRecipes', JSON.stringify(userObj.myRecipes))            
+            }
+        })
     } else { // if signed out display sign in button and disable sign out button
         //document.getElementById('firebaseui-auth-container').style.display = 'block'
         console.log(`user is signed out`)
