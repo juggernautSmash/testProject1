@@ -1,6 +1,6 @@
 console.log('profile.js is linked')
 console.log('getting email info in localStorage')
-let email = localStorage.getItem('email')
+let email = ''
 console.log(`email is ${email}`)
 let userIngredients = []
 
@@ -54,8 +54,9 @@ const addIngredientToDOM = ingredient => {//Creates an entry under ingredients w
 } //end addIngredientToDOM
 
 const getProfile = () => {
-    // email = localStorage.getItem('email')
     console.log('running getProfile')
+    email = localStorage.getItem('email')
+    console.log(`email is ${email}`)
 
     usersDb.doc(email).get()
     .then(data => {
@@ -65,9 +66,6 @@ const getProfile = () => {
         document.getElementById('email').textContent = data.data().email
 
         //Update My Ingredients
-        // console.log('food is...')
-        // console.log(typeof(data.data().myFood))
-        // console.log(data.data().myFood)
         data.data().myFood.forEach(food => {
             addIngredientToDOM(food)
         })
@@ -152,4 +150,4 @@ document.addEventListener('click', ({target}) => {
     }// end if
 })// end event listener
 
-setTimeout(getProfile() , 5000)
+setTimeout(getProfile() , 10000)
