@@ -150,4 +150,7 @@ document.addEventListener('click', ({target}) => {
     }// end if
 })// end event listener
 
-setTimeout(getProfile() , 10000)
+
+
+console.log("running getProfile after 30 sec timout")
+setTimeout( getProfile, 5000)

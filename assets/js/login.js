@@ -47,7 +47,7 @@ auth.onAuthStateChanged(user => {
         //Check if the user exists
         //let exists = false
         console.log(`user email is ${user.email}`)
-        setTimeout(syncUser(user.email), 10000)
+        syncUser(user.email)
         // usersDb.doc(user.email).get().then( r => {
         //     if( r.exists ){//If the user exists
         //         //push email to localStorage
