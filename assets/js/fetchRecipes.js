@@ -1,4 +1,5 @@
 console.log('fetchRecipes.js is linked')
+let email = localStorage.getItem('email')
 
 let userIngredients = []
 let selectedIngredients = []
@@ -18,90 +19,106 @@ const addIngredientToDOM = ingredient => {//Creates an entry under ingredients w
 }//end addIngredientToDOM
 
 const generateRecipeCard = ({ id, title, image, missedIngredientCount}) => {//Generate recipe card on the DOM based on selected FETCH 
-    //console.log(`running generateRecipeCard`)
-
+    console.log(`running generateRecipeCard`)
     fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`)
         .then(r => r.json())
         .then(recipe => {
-            //console.log(`recipe URL is ${recipe.sourceUrl}`)
-            //recipeUrl = recipe.sourceUrl
 
+            //Generate recipeCard in the ALL tab
             let recipeCard = document.createElement('div')
             recipeCard.id = id
-            recipeCard.className = 'col s6 card'
+            recipeCard.className = 'row'
             recipeCard.innerHTML = `
-                <div class='col s6 card-image'>
-                    <button class='saveRecipe btn-floating btn-large waves-effect waves-red blue-grey darken'>
-                        <i class='save material-icons' 
-                            data-title='${title}' 
-                            data-id='${id}' 
-                            data-img='${image}' 
-                            data-url='${recipe.sourceUrl}' 
-                            data-saved='false'>add</i>
-                    </button>
-                    <a href='${recipe.sourceUrl}' target='_blank'>
-                    <img class='card-image' src='${image}'>
-                    <div class='card-title blue-grey darken-4'>
-                        <span class='recipe-title'>${title}</span>
+                <div class="col s12 m6">
+                    <div class="card">
+                        <div class="card-image">
+                            <a href='${recipe.sourceUrl}' target='_blank'>
+                                <img src="${image}">
+                            </a>
+                            <a class="btn-floating halfway-fab waves-effect waves-light red">
+                                <i class="save material-icons" 
+                                    data-title='${title}' 
+                                    data-id='${id}' 
+                                    data-img='${image}' 
+                                    data-url='${recipe.sourceUrl}' 
+                                    data-saved='false'>add</i>
+                            </a>
+                        </div>
+                        <div class="card-content blue-grey darken-4">
+                            <a href='${recipe.sourceUrl}' target='_blank'>
+                                <p class="recipe-title">${title}</p>
+                            </a>
+                        </div>
                     </div>
-                    </a>
                 </div>
             `
             console.log('generate recipe card in all recipe')
             document.getElementById('allRecipes').append(recipeCard)
 
+            //Generate recipeCard in the Some Groceries tab
             if(missedIngredientCount > 0){
                 let makeLaterCard = document.createElement('div')
                 makeLaterCard.id = id
-                makeLaterCard.className = 'col s6 card'
+                makeLaterCard.className = 'row'
                 makeLaterCard.innerHTML = `
-                    <div class='col s6 card-image'>
-                        <button class='saveRecipe btn-floating btn-large waves-effect waves-red blue-grey darken'>
-                            <i class='save material-icons' 
-                                data-title='${title}' 
-                                data-id='${id}' 
-                                data-img='${image}' 
-                                data-url='${recipe.sourceUrl}' 
-                                data-saved='false'>add</i>
-                        </button>
-                        <a href='${recipe.sourceUrl}' target='_blank'>
-                        <img class='card-image' src='${image}'>
-                        <div class='card-title blue-grey darken-4'>
-                            <span class='recipe-title'>${title}</span>
+                    <div class="col s12 m6">
+                        <div class="card">
+                            <div class="card-image">
+                                <a href='${recipe.sourceUrl}' target='_blank'>
+                                    <img src="${image}">
+                                </a>
+                                <a class="btn-floating halfway-fab waves-effect waves-light red">
+                                    <i class="save material-icons" 
+                                        data-title='${title}' 
+                                        data-id='${id}' 
+                                        data-img='${image}' 
+                                        data-url='${recipe.sourceUrl}' 
+                                        data-saved='false'>add</i>
+                                </a>
+                            </div>
+                            <div class="card-content blue-grey darken-4">
+                                <a href='${recipe.sourceUrl}' target='_blank'>
+                                    <p class="recipe-title">${title}</p>
+                                </a>
+                            </div>
                         </div>
-                        </a>
                     </div>
                 `
                 console.log(`missedIngredientCount is ${missedIngredientCount}`)
                 console.log('generating recipeCard in makeLater')
                 document.getElementById('makeLater').append(makeLaterCard)
-            } else {
+            } else { // Generate recipeCard to Make Now tab
                 let makeNowCard = document.createElement('div')
                 makeNowCard.id = id
-                makeNowCard.className = 'col s6 card'
+                makeNowCard.className = 'row'
                 makeNowCard.innerHTML = `
-                    <div class='col s6 card-image'>
-                        <button class='saveRecipe btn-floating btn-large waves-effect waves-red blue-grey darken'>
-                            <i class='save material-icons' 
-                                data-title='${title}' 
-                                data-id='${id}' 
-                                data-img='${image}' 
-                                data-url='${recipe.sourceUrl}'
-                                data-saved='false'>add</i>
-                        </button>
-                        <a href='${recipe.sourceUrl}' target='_blank'>
-                        <img class='card-image' src='${image}'>
-                        <div class='card-title blue-grey darken-4'>
-                            <span class='recipe-title'>${title}</span>
+                    <div class="col s12 m6">
+                        <div class="card">
+                            <div class="card-image">
+                                <a href='${recipe.sourceUrl}' target='_blank'>
+                                    <img src="${image}">
+                                </a>
+                                <a class="btn-floating halfway-fab waves-effect waves-light red">
+                                    <i class="save material-icons" 
+                                        data-title='${title}' 
+                                        data-id='${id}' 
+                                        data-img='${image}' 
+                                        data-url='${recipe.sourceUrl}' 
+                                        data-saved='false'>add</i>
+                                </a>
+                            </div>
+                            <div class="card-content blue-grey darken-4">
+                                <a href='${recipe.sourceUrl}' target='_blank'>
+                                    <p class="recipe-title">${title}</p>
+                                </a>
+                            </div>
                         </div>
-                        </a>
                     </div>
                 `
                 console.log(`missedIngredientCount is ${missedIngredientCount}`)
                 console.log('generating recipeCard in makeNow')
                 document.getElementById('makeNow').append(makeNowCard)               
             }
-            // document.getElementById('makeLater').append(recipeCard)
         })//end then
         .catch(err => {
             console.log(`something went wrong getting the recipe`)
@@ -115,7 +132,34 @@ const getFood = () => {
     foods.forEach( food => {
         addIngredientToDOM(food)
     })
-}
+} //end getFood
+
+const addToLocalStorage = (key, value) =>{
+    console.log(`running addToLocalStorage`)
+    if(localStorage.getItem(key) === null){
+        console.log(`${key} does not exist`)
+    } else {
+        console.log(`key is '${key}' and value is '${value}'`)
+        //Get the value in localStorage   
+        let keyValue = JSON.parse(localStorage.getItem(key))
+        //Push the new value in the data retrieved from localStroge
+        keyValue.push(value)
+        //Push the updated value to localStorage
+        localStorage.setItem(key,JSON.stringify(keyValue))
+    }
+} //end addToLocalStorage
+
+const removeFromLocalStorage = (key, value) => {
+    console.log(`running removeFromLocalStorage`)
+    if(localStorage.getItem(key) === null){
+        console.log(`${key} does not exist`)
+    } else {
+        console.log(`key is '${key}' and value is '${value}'`)   
+        let keyValue = JSON.parse(localStorage.getItem(key)) //
+        keyValue.splice(keyValue.indexOf(value), 1)
+        localStorage.setItem(key,JSON.stringify(keyValue))
+    }
+} //end removeFromLocalStorage
 
 document.getElementById('addItem').addEventListener('click', e => { // Add button action
     e.preventDefault()
@@ -126,8 +170,9 @@ document.getElementById('addItem').addEventListener('click', e => { // Add butto
     //handler if no ingredients text
     if(ingredient === ''){
         swal("Please input an ingredient")
-    }
-    else{
+    } else if(JSON.parse(localStorage.getItem('myFood')).indexOf(ingredient) >= 0 ){
+        swal(`${ingredient} is already in your list`)
+    } else{
         userIngredients.push(ingredient)
         addIngredientToDOM(ingredient)
     }
@@ -160,12 +205,8 @@ document.getElementById('fetchRecipes').addEventListener('click', e => {//FETCH 
         fetch(`https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=${selectedIngredients.toString()}&number=10`)
         .then(r => r.json())//grab the recipes
         .then( recipes => { //convert data to something readable
-            //console.log(e)
             recipes.forEach(recipe => {//grab each recipe in from the data
-                // console.log(recipe.title)
-                // console.log(recipe.missedIngredientCount)
                 generateRecipeCard(recipe)
-                // recipe.missedIngredientCount === 0 ? yesMake.push(recipe.id) : notMake.push(recipe.id)
             })
         })//end .then
         .catch(err => {
@@ -188,6 +229,11 @@ document.addEventListener('click', ({target:recipe}) => {
             }
             savedRecipes.push(saveRecipe)
             recipe.dataset.saved = 'true'
+
+            usersDb.doc(email).update({
+                myRecipes: firebase.firestore.FieldValue.arrayUnion(saveRecipe)
+            }) 
+
             console.log(`recipe is saved`)
         }// end if
     }// end if
