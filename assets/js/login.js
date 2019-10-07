@@ -1,4 +1,5 @@
 console.log('login.js is linked')
+let email = ''
 
 // Get elements
 const emailIn = document.getElementById('email')
@@ -8,7 +9,7 @@ const signUpBtn = document.getElementById('signUp')
 const signOutBtn = document.getElementById('signOut')
 const signOutBtnM = document.getElementById('signOutm')
 
-const syncUser = (email) => {
+const syncUser = () => {
     usersDb.doc(email).get().then( r => {
         if( r.exists ){//If the user exists
             //push email to localStorage
@@ -47,7 +48,11 @@ auth.onAuthStateChanged(user => {
         //Check if the user exists
         //let exists = false
         console.log(`user email is ${user.email}`)
-        syncUser(user.email)
+        console.log(`setting global var email to ${user.email}`)
+        email = user.email
+        console.log(`email is now ${email}`)
+        console.log(`running syncUser in 10 seconds`)
+        setTimeout(syncUser, 10000)
         // usersDb.doc(user.email).get().then( r => {
         //     if( r.exists ){//If the user exists
         //         //push email to localStorage
