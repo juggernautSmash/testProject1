@@ -150,7 +150,36 @@ document.addEventListener('click', ({target}) => {
         // Remove from localStorage
         removeFromLocalStorage('myFood', target.dataset.food )
     }// end if
+
+    if(target.className === 'waves-effect waves-teal red btn deleteRecipe'){
+        removeRecipeFromLocalStorage(target.dataset.id)
+    }
+
 })// end event listener
+
+const removeRecipeFromFirebase = (recipeId) => {
+    console.log(`recipeId is ${recipeId}`)
+    usersDb.doc(email).get()
+    .then( data => {
+        // get the array from firebase
+        let myRecipes = data.data().myRecipes
+        console.log('myRecipes is...')
+        console.log(myRecipes)
+
+        //find the index of the recipe in the array
+        let myRecipeIndex = myRecipes.findIndex( recipe => recipe.id === recipeId)   
+        console.log(`recipe index is ${myRecipeIndex}`)
+
+        //remove the recipe in the array
+        myRecipes.splice(myRecipeIndex, 1)  
+    })
+}
+
+const removeRecipeFromLocalStorage = (recipeId) => {
+    let storedRecipes = JSON.parse(localStorage.getItem(myRecipes))
+    let myRecipeIndex = storedRecipes.findIndex( recipe => recipe.id === recipeId)  
+    storedRecipes.splice(myRecipeIndex,1)
+}
 
 //wait 5 seconds before getProfile
 setTimeout( getProfile, 5000)
