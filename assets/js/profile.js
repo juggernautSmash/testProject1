@@ -180,6 +180,7 @@ const removeRecipeFromLocalStorage = (recipeId) => {
     console.log(`running removeRecipeFromLocalStorage`)
     let storedRecipes = JSON.parse(localStorage.getItem('myRecipes'))
     let myRecipeIndex = storedRecipes.findIndex( recipe => recipe.id === recipeId)  
+    console.log(`myRecipeIndex is ${myRecipeIndex}`)
     storedRecipes.splice(myRecipeIndex,1)
 
     localStorage.setItem('myRecipes', JSON.stringify(storedRecipes))
