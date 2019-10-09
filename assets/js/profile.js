@@ -152,7 +152,6 @@ document.addEventListener('click', ({target}) => {
     if(target.className === 'waves-effect waves-light red btn deleteRecipe'){
         console.log(`YES button was clicked`)
         removeRecipeFromLocalStorage(target.dataset.id)
-        usersDb.doc(email).set('myRecipe', )
     }
 
 })// end event listener
