@@ -36,8 +36,6 @@ document.getElementById('reg').addEventListener('click', e => {
     const lastName = document.getElementById('lastName').value
     const email = document.getElementById('email').value
     const password = document.getElementById('password').value
-    const passConfirm = document.getElementById('passConfirm').value
-    console.log(firstName)
 
     auth.createUserWithEmailAndPassword(email, password)
         .then(user => {
@@ -63,8 +61,8 @@ document.getElementById('showPass').addEventListener('change', e => {
     //e.preventDefault()
     console.log(`showPass is clicked`)
     //console.log(e)
-    let password = document.getElementById("password");
-    let showPass = document.getElementsByName('showPassword')
+    const password = document.getElementById("password");
+    const showPass = document.getElementsByName('showPassword')
     //let showPass = document.getElementById('showPass')
     //console.log(`showPass is ${showPass.checked}`)
 
