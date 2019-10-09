@@ -179,6 +179,8 @@ const removeRecipeFromFirebase = (recipeId) => {
 const removeRecipeFromLocalStorage = (recipeId) => {
     console.log(`running removeRecipeFromLocalStorage`)
     let storedRecipes = JSON.parse(localStorage.getItem('myRecipes'))
+    console.log(`storedRecipes is...`)
+    console.log(storedRecipes)
     let myRecipeIndex = storedRecipes.findIndex( recipe => recipe.id === recipeId)  
     console.log(`myRecipeIndex is ${myRecipeIndex}`)
     storedRecipes.splice(myRecipeIndex,1)
