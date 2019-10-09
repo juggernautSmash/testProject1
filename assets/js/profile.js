@@ -152,6 +152,7 @@ document.addEventListener('click', ({target}) => {
     }// end if
 
     if(target.className === 'waves-effect waves-teal red btn deleteRecipe'){
+        console.log(`YES button was clicked`)
         removeRecipeFromLocalStorage(target.dataset.id)
     }
 
@@ -176,9 +177,12 @@ const removeRecipeFromFirebase = (recipeId) => {
 }
 
 const removeRecipeFromLocalStorage = (recipeId) => {
+    console.log(`running removeRecipeFromLocalStorage`)
     let storedRecipes = JSON.parse(localStorage.getItem(myRecipes))
     let myRecipeIndex = storedRecipes.findIndex( recipe => recipe.id === recipeId)  
     storedRecipes.splice(myRecipeIndex,1)
+
+    localStorage.setItem('myRecipes', storedRecipes)
 }
 
 //wait 5 seconds before getProfile
