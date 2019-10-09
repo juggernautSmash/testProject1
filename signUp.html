@@ -46,26 +46,40 @@
             <div class="col s12 ">
                 <h3><u>Create Account</u></h3>
                 <form>
-                    <h6 class="col s6 left"><u>First Name:</u></h6>
-                    <input id="firstName" type="text">
-                    <br>
-                    <h6 class="col s6 left"><u>Last Name:</u></h6>
-                    <input id="lastName" type="text">
-                    <br>
-                    <h6 class="col s6 left"><u>Email:</u></h6>
-                    <input id="email" type="text">
-                    <br>
-                    <h6 class="col s6 left"><u>Password:</u></h6>
-                    <input id="password" type="text">
-                    <br>
-                    <h6 class="col s6 left"><u>Confirm Password:</u></h6>
-                    <input id="passConfirm" type="text">
-                    <br>
-                    <br>
-                    <br>
-                    <a id="reg" class="waves-effect waves-light btn">Register</a>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="Enter First Name" id="firstName" type="text" class="validate">
+                            <label for="firstName">First Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="Enter Last Name" id="firstName" type="text" class="validate">
+                            <label for="lastName">Last Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="Enter password" id="email" type="text" class="validate">
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="Enter Password" id="password" type="password" class="validate">
+                            <label for="password">Password</label>
+                        </div>
+                        <div class=""> 
+                            <label>
+                                <input id="showPass" name="showPassword" class="with-gap" type="checkbox"/>
+                                <span>Show Password</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <a id="reg" class="waves-effect waves-light btn">Register</a>
+                    </div>
                 </form>
-
             </div>
         </div>
     </div>
@@ -81,7 +95,6 @@
     <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-auth.js"></script>
     <script src="https://cdn.firebase.com/libs/firebaseui/4.2.0/firebaseui.js"></script>
-    <script src="./assets/js/firebaseInit.js"></script>
     <script src="./assets/js/signUp.js"></script>
     <script>
         //Initialize nav bar
