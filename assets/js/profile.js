@@ -31,7 +31,7 @@ const generateMyRecipeCard = ({id, title, img, url}) => {//Generate recipe card 
                 <span class="card-title grey-text text-lighten-4">Remove Recipe?
                     <i class="material-icons right">close</i>
                 </span>
-                <button class="waves-effect waves-light red btn deleteRecipe">YES</button>
+                <button class="waves-effect waves-light red btn deleteRecipe" data-id=${id}>YES</button>
                 <button class="waves-effect waves-red blue-grey darken btn">NO</button>
             </div>
         </div>
