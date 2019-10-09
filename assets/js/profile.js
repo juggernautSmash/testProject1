@@ -151,7 +151,7 @@ document.addEventListener('click', ({target}) => {
         removeFromLocalStorage('myFood', target.dataset.food )
     }// end if
 
-    if(target.className === 'waves-effect waves-teal red btn deleteRecipe'){
+    if(target.className === 'waves-effect waves-light red btn deleteRecipe'){
         console.log(`YES button was clicked`)
         removeRecipeFromLocalStorage(target.dataset.id)
     }
