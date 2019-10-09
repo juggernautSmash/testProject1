@@ -20,8 +20,7 @@ const uiConfig = {
     signInSuccessUrl: './profile.html',
     signInOptions: [
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
+        firebase.auth.EmailAuthProvider.PROVIDER_ID
     ]
 }
 
@@ -70,8 +69,6 @@ auth.onAuthStateChanged(user => {
                 localStorage.setItem('myRecipes', JSON.stringify(userObj.myRecipes))            
             }
         })
-        console.log(`running getProfile in 5 seconds`)
-
     } else { // if signed out display sign in button and disable sign out button
         //document.getElementById('firebaseui-auth-container').style.display = 'block'
         console.log(`user is signed out`)
@@ -83,4 +80,13 @@ auth.onAuthStateChanged(user => {
         localStorage.removeItem('myFood')
         localStorage.removeItem('myRecipes')
     }
+})
+
+// Add sign off button
+document.getElementById('signOut').addEventListener('click', e => {
+    auth.signOut()
+})
+
+document.getElementById('signOutm').addEventListener('click', e => {
+    auth.signOut()
 })

@@ -1,8 +1,8 @@
 console.log('profile.js is linked')
-console.log('getting email info in localStorage')
-let email = ''
+console.log('getting email info in localStorae')
+let email = localStorage.getItem('email')
 console.log(`email is ${email}`)
-let userIngredients = []
+//let userIngredients = []
 
 const generateMyRecipeCard = ({id, title, img, url}) => {//Generate recipe card on the DOM based on selected FETCH 
     //console.log(`running generateRecipeCard`)
@@ -54,9 +54,8 @@ const addIngredientToDOM = ingredient => {//Creates an entry under ingredients w
 } //end addIngredientToDOM
 
 const getProfile = () => {
+    // email = localStorage.getItem('email')
     console.log('running getProfile')
-    email = localStorage.getItem('email')
-    console.log(`email is ${email}`)
 
     usersDb.doc(email).get()
     .then(data => {
@@ -66,6 +65,9 @@ const getProfile = () => {
         document.getElementById('email').textContent = data.data().email
 
         //Update My Ingredients
+        // console.log('food is...')
+        // console.log(typeof(data.data().myFood))
+        // console.log(data.data().myFood)
         data.data().myFood.forEach(food => {
             addIngredientToDOM(food)
         })
@@ -121,16 +123,17 @@ document.getElementById('addItem').addEventListener('click', e => {// Add button
     } else if(JSON.parse(localStorage.getItem('myFood')).indexOf(ingredient) >= 0 ){//if ingredient is already in the list
         swal(`${ingredient} is already in your list`)
     } else{// if ingredient is not in the list
-        userIngredients.push(ingredient)
+        //userIngredients.push(ingredient)
         addIngredientToDOM(ingredient)
-    }
 
-    // add food ingredient to firestore
-    usersDb.doc(email).update({
-        myFood: firebase.firestore.FieldValue.arrayUnion(ingredient)
-    })
+        // add food ingredient to firestore
+        usersDb.doc(email).update({
+            myFood: firebase.firestore.FieldValue.arrayUnion(ingredient)
+        })
 
-    addToLocalStorage('myFood', ingredient)
+        // add food ingredient to localStorage
+        addToLocalStorage('myFood', ingredient)
+    }// end else if
 
     // Clear the text field
     document.getElementById('foodItem').value = ''
@@ -149,5 +152,5 @@ document.addEventListener('click', ({target}) => {
     }// end if
 })// end event listener
 
-console.log(`calling get profile after 10 seconds`)
-setTimeout( getProfile, 10000)
+//wait 5 seconds before getProfile
+setTimeout( getProfile, 5000)
