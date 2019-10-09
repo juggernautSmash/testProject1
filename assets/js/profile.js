@@ -10,33 +10,31 @@ const generateMyRecipeCard = ({id, title, img, url}) => {//Generate recipe card 
     recipeCard.id = id
     recipeCard.className = 'row'
     recipeCard.innerHTML = `
-    <div class="row">
-    <div class="col s12 m6">
-        <div class="card">
-            <div class="card-image">
-                <a href='${url}' target='_blank'>
-                <img src="${img}">
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-image">
+                    <a href='${url}' target='_blank'>
+                    <img src="${img}">
+                    </a>
+                <!-- <span class="card-title recipe-title">${title}</span> -->
+                <a class="btn-floating halfway-fab waves-effect waves-light activator red">
+                    <i class="material-icons">clear</i>
                 </a>
-            <!-- <span class="card-title recipe-title">${title}</span> -->
-            <a class="btn-floating halfway-fab waves-effect waves-light activator red">
-                <i class="material-icons">clear</i>
-            </a>
-            </div>
-            <div class="card-content blue-grey darken-4">
-                <a href='${url}' target='_blank'>
-                    <p class="recipe-title">${title}</p>
-                </a>
-            </div>
-            <div class="card-reveal blue-grey darken-4 ">
-                <span class="card-title grey-text text-lighten-4">Remove Recipe?
-                    <i class="material-icons right">close</i>
-                </span>
-                <button class="waves-effect waves-light red btn deleteRecipe" data-id=${id}>YES</button>
-                <button class="waves-effect waves-red blue-grey darken btn">NO</button>
+                </div>
+                <div class="card-content blue-grey darken-4">
+                    <a href='${url}' target='_blank'>
+                        <p class="recipe-title">${title}</p>
+                    </a>
+                </div>
+                <div class="card-reveal blue-grey darken-4 ">
+                    <span class="card-title grey-text text-lighten-4">Remove Recipe?
+                        <i class="material-icons right">close</i>
+                    </span>
+                    <button class="waves-effect waves-light red btn deleteRecipe" data-id=${id}>YES</button>
+                    <button class="waves-effect waves-red blue-grey darken btn">NO</button>
+                </div>
             </div>
         </div>
-    </div>
-</div>
     `
     document.getElementById('myRecipes').append(recipeCard)
 }// end generateMyRecipeCard
@@ -154,41 +152,43 @@ document.addEventListener('click', ({target}) => {
     if(target.className === 'waves-effect waves-light red btn deleteRecipe'){
         console.log(`YES button was clicked`)
         removeRecipeFromLocalStorage(target.dataset.id)
+        usersDb.doc(email).set('myRecipe', )
     }
 
 })// end event listener
 
-const removeRecipeFromFirebase = (recipeId) => {
-    console.log(`recipeId is ${recipeId}`)
-    usersDb.doc(email).get()
-    .then( data => {
-        // get the array from firebase
-        let myRecipes = data.data().myRecipes
-        console.log('myRecipes is...')
-        console.log(myRecipes)
+// const removeRecipeFromFirebase = (recipeId) => {
+//     console.log(`recipeId is ${recipeId}`)
+//     usersDb.doc(email).get()
+//     .then( data => {
+//         // get the array from firebase
+//         let myRecipes = data.data().myRecipes
+//         console.log('myRecipes is...')
+//         console.log(myRecipes)
 
-        //find the index of the recipe in the array
-        let myRecipeIndex = myRecipes.findIndex( recipe => recipe.id === recipeId)   
-        console.log(`recipe index is ${myRecipeIndex}`)
+//         //find the index of the recipe in the array
+//         let myRecipeIndex = myRecipes.findIndex( recipe => recipe.id === recipeId)   
+//         console.log(`recipe index is ${myRecipeIndex}`)
 
-        //remove the recipe in the array
-        myRecipes.splice(myRecipeIndex, 1)  
-    })
-}
+//         //remove the recipe in the array
+//         myRecipes.splice(myRecipeIndex, 1)  
+//     })
+// }
 
 const removeRecipeFromLocalStorage = (recipeId) => {
     console.log(`running removeRecipeFromLocalStorage`)
-    console.log(`recipeId is ${recipeId} and is ${typeof(recipeId)}`)
+    // console.log(`recipeId is ${recipeId} and is ${typeof(recipeId)}`)
     let storedRecipes = JSON.parse(localStorage.getItem('myRecipes'))
-    console.log(`storedRecipes is...`)
-    console.log(storedRecipes)
+    // console.log(`storedRecipes is...`)
+    // console.log(storedRecipes)
     let myRecipeIndex = storedRecipes.findIndex( recipe => recipe.id === recipeId)  
-    console.log(`myRecipeIndex is ${myRecipeIndex}`)
+    // console.log(`myRecipeIndex is ${myRecipeIndex}`)
     storedRecipes.splice(myRecipeIndex,1)
 
     localStorage.setItem('myRecipes', JSON.stringify(storedRecipes))
 
-    document.getElementById(`${recipeId}`).remove()
+    document.getElementById(recipeId).remove()
+    usersDb.doc(email).set('myRecipe', storedRecipes)
 }
 
 //wait 5 seconds before getProfile
