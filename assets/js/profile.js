@@ -178,6 +178,7 @@ const removeRecipeFromFirebase = (recipeId) => {
 
 const removeRecipeFromLocalStorage = (recipeId) => {
     console.log(`running removeRecipeFromLocalStorage`)
+    console.log(`recipeId is ${recipeId} and is ${typeof(recipeId)}`)
     let storedRecipes = JSON.parse(localStorage.getItem('myRecipes'))
     console.log(`storedRecipes is...`)
     console.log(storedRecipes)
