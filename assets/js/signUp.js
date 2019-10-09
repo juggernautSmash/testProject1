@@ -10,19 +10,19 @@ document.getElementById('reg').addEventListener('click', e => {
 
     auth.createUserWithEmailAndPassword(email, password)
         .then(user => {
-            console.log('login successful')
-            console.log(r)
+            console.log('login successful from signOut.js')
+            console.log(user)
+            console.log(`generating user from from signOut.js`)
             usersDb.doc(email).set({
-                displayName: user.displayName,
-                email: user.email,
+                displayName: `${firstName} ${lastName}`,
+                email: email,
                 myFood: [],
                 myRecipes: [],
                 allergies: []
             })
         })
         .catch(e => {
-            console.log('an error has occured')
+            console.log('an error has occured from signOut.js')
             console.log(e.message)
         });
-
 })
