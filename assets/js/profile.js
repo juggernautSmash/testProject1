@@ -182,9 +182,9 @@ const removeRecipeFromLocalStorage = (recipeId) => {
     let myRecipeIndex = storedRecipes.findIndex( recipe => recipe.id === recipeId)  
     storedRecipes.splice(myRecipeIndex,1)
 
-    localStorage.setItem('myRecipes', storedRecipes)
+    localStorage.setItem('myRecipes', JSON.stringify(storedRecipes))
 
-    document.getElementById(recipeId).remove()
+    document.getElementById(`${recipeId}`).remove()
 }
 
 //wait 5 seconds before getProfile
