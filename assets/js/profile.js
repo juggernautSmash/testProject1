@@ -187,7 +187,7 @@ const removeRecipeFromLocalStorage = (recipeId) => {
     storedRecipes.splice(myRecipeIndex,1)
 
     localStorage.setItem('myRecipes', JSON.stringify(storedRecipes))
-    usersDb.doc(email).set('myRecipes', storedRecipes)
+    usersDb.doc(email).set({'myRecipes': storedRecipes})
 }
 
 //wait 5 seconds before getProfile
