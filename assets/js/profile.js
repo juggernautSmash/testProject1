@@ -151,28 +151,30 @@ document.addEventListener('click', ({target}) => {
 
     if(target.className === 'waves-effect waves-light red btn deleteRecipe'){
         console.log(`YES button was clicked`)
+        document.getElementById(target.dataset.id).remove()
         removeRecipeFromLocalStorage(target.dataset.id)
+        removeRecipeFromFirebase(target.dataset.id)
     }
 
 })// end event listener
 
-// const removeRecipeFromFirebase = (recipeId) => {
-//     console.log(`recipeId is ${recipeId}`)
-//     usersDb.doc(email).get()
-//     .then( data => {
-//         // get the array from firebase
-//         let myRecipes = data.data().myRecipes
-//         console.log('myRecipes is...')
-//         console.log(myRecipes)
+const removeRecipeFromFirebase = (recipeId) => {
+    console.log(`recipeId is ${recipeId}`)
+    usersDb.doc(email).get()
+    .then( data => {
+        // get the array from firebase
+        let myRecipes = data.data().myRecipes
+        console.log('myRecipes is...')
+        console.log(myRecipes)
 
-//         //find the index of the recipe in the array
-//         let myRecipeIndex = myRecipes.findIndex( recipe => recipe.id === recipeId)   
-//         console.log(`recipe index is ${myRecipeIndex}`)
+        //find the index of the recipe in the array
+        let myRecipeIndex = myRecipes.findIndex( recipe => recipe.id === recipeId)   
+        console.log(`recipe index is ${myRecipeIndex}`)
 
-//         //remove the recipe in the array
-//         myRecipes.splice(myRecipeIndex, 1)  
-//     })
-// }
+        //remove the recipe in the array
+        myRecipes.splice(myRecipeIndex, 1)  
+    })
+}
 
 const removeRecipeFromLocalStorage = (recipeId) => {
     console.log(`running removeRecipeFromLocalStorage`)
@@ -185,9 +187,6 @@ const removeRecipeFromLocalStorage = (recipeId) => {
     storedRecipes.splice(myRecipeIndex,1)
 
     localStorage.setItem('myRecipes', JSON.stringify(storedRecipes))
-
-    document.getElementById(recipeId).remove()
-    usersDb.doc(email).set('myRecipe', storedRecipes)
 }
 
 //wait 5 seconds before getProfile
