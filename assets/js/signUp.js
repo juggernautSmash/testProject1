@@ -1,3 +1,5 @@
+
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: 'AIzaSyC0N5n6Wa6j4I_UX0DJ2Td1aymh7l2UVq8',
@@ -7,7 +9,7 @@ const firebaseConfig = {
     storageBucket: 'sdafrf-442fb.appspot.com',
     messagingSenderId: '1079646422636',
     appId: '1:1079646422636:web:73b3bec708ef08768f7a49'
-    };
+};
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
@@ -37,11 +39,15 @@ document.getElementById('reg').addEventListener('click', e => {
     const email = document.getElementById('email').value
     const password = document.getElementById('password').value
 
+    console.log(`firstName is ${firstName}`)
+    console.log(`lastsName is ${lastName}`)
+
     auth.createUserWithEmailAndPassword(email, password)
         .then(user => {
             console.log('login successful from signUp.js')
             console.log(user)
             console.log(`generating user from from signUp.js`)
+            console.log(`first and last name is ${firstName} ${lastName}`)
             usersDb.doc(email).set({
                 displayName: `${firstName} ${lastName}`,
                 email: email,
@@ -51,7 +57,7 @@ document.getElementById('reg').addEventListener('click', e => {
             })
         })
         .catch(e => {
-            console.log('an error has occured from signOut.js')
+            console.log('an error has occured from signUp.js')
             console.log(e.message)
         });
 })
@@ -66,7 +72,7 @@ document.getElementById('showPass').addEventListener('change', e => {
     //let showPass = document.getElementById('showPass')
     //console.log(`showPass is ${showPass.checked}`)
 
-    if(showPass[0].checked) {
+    if (showPass[0].checked) {
         //showPass.checked = false
         console.log(`showPass is ${showPass[0].checked}`)
         password.type = 'text'

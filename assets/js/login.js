@@ -1,12 +1,9 @@
-console.log('login.js is linked')
+//console.log('login.js is linked')
 
 // Get elements
 const emailIn = document.getElementById('email')
 const passwordIn = document.getElementById('pass')
 const loginBtn = document.getElementById('login')
-// const signUpBtn = document.getElementById('signUp')
-const signOutBtn = document.getElementById('signOut')
-const signOutBtnM = document.getElementById('signOutm')
 
 loginBtn.addEventListener('click', e => {
     e.preventDefault()
@@ -36,23 +33,6 @@ loginBtn.addEventListener('click', e => {
 
 })
 
-// signUpBtn.addEventListener('click', e => {
-//     e.preventDefault()
-//     // Get email and password
-//     const email = emailIn.value
-//     const password = passwordIn.value
-
-//     auth.createUserWithEmailAndPassword(email, password)
-//     .then(r => {
-//         console.log('login successful')
-//         console.log(r)
-//     })
-//     .catch(e => {
-//         console.log('an error has occured')
-//         console.log(e.message)
-//     });
-// })
-
 // Change text in the password field to show text or dots
 document.getElementById('showPass').addEventListener('change', e => {
     //e.preventDefault()
@@ -71,4 +51,5 @@ document.getElementById('showPass').addEventListener('change', e => {
         console.log(`showPass is ${showPass[0].checked}`)
         password.type = 'password'
     }
+
 })

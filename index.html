@@ -18,7 +18,9 @@
 </head>
 
 <body class='background'>
-  <nav><!-- Header Navbar-->
+  <div class="black" style="height: 812px; width: 375px; opacity: 0.80; position: absolute; "></div>
+  <nav>
+    <!-- Header Navbar-->
     <div class="nav-wrapper blue-grey darken-4 ">
       <a id="home" class=left><i class="material-icons">home</i></a>
       <a href="#" class="brand-logo center blue-grey-text text-lighten-4">SDAFRF</a>
@@ -35,7 +37,8 @@
         <li><a id="signOutm" class="blue-grey-text text-lighten-4 hide" href="index.html">Sign Out</a></li>
       </ul>
     </div>
-  </nav><!--End Navbar-->
+  </nav>
+  <!--End Navbar-->
   <div class='container'>
     <!-- <div class='row'>
       <div class="center">
@@ -45,44 +48,40 @@
         <h4 id='intro'>The app that helps you get recipes based on what ingredients you have.</h4>
       </div>
     </div> -->
-    <div class="row center">
-        <form action="/action_page.php" id="logInForm">
-            <div class="row">
-                <div class="input-field col s6">
-                    <input placeholder="Enter Email" id="email" type="text" class="validate">
-                    <label for="email">Email</label>
-                </div>
+    <div class="row">
+      <form action="/action_page.php" id="logInForm">
+        <div class="row">
+          <div class="input-field col s12">
+            <input placeholder="Enter Email" id="email" type="text" class="validate">
+            <label for="email">Email</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 ">
+            <input placeholder="Enter Password" id="pass" type="password" class="validate">
+            <label for="password">Password</label>
+            <div class="">
+              <label>
+                <input id="showPass" name="showPassword" class="with-gap" type="checkbox" />
+                <span>Show Password</span>
+              </label>
             </div>
-            <div class="row">
-                <div class="input-field col s6 ">          
-                    <input placeholder="Enter Password" id="pass" type="password" class="validate">
-                    <label for="password">Password</label>
-                <div class=""> 
-                  <label>
-                      <input id="showPass" name="showPassword" class="with-gap" type="checkbox"/>
-                      <span>Show Password</span>
-                  </label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col s6 center">
-                    <button type="submit" id="login"
-                        class="waves-effect waves-red blue-grey darken btn">Login</button>
-                    <button type="submit" id="signUp"
-                    class="waves-effect waves-red blue-grey darken btn">Sign Up</button>
-                </div>
-            </div>
-        </form>
-      </div>
+          </div>
+        </div>
+        <div class="row">
+          <button type="submit" id="login" class="waves-effect waves-red blue-grey darken btn">Login</button>
+          <button onclick="location.href ='./signUp.html';" type="submit" id="signUp" class="waves-effect waves-red blue-grey darken btn">Sign Up</button>
+          <div class='row'>
+            <!-- Firebase Auth Info -->
+            <div id="firebaseui-auth-container"></div>
+          </div>
+        </div>
+      </form>
     </div>
-    <div class='row'>
-        <!-- Firebase Auth Info -->
-        <div id="firebaseui-auth-container"></div>
-      </div>
-    </div>
-      
-      <!-- Footer stuff goes here -->
-      <div></div>
+  </div>
+
+  <!-- Footer stuff goes here -->
+  <div></div>
   </div>
 
   <!-- Materialize JS -->

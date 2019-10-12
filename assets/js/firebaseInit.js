@@ -1,4 +1,4 @@
-console.log('firebaseInit.js is linked')
+//console.log('firebaseInit.js is linked')
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -11,7 +11,7 @@ const firebaseConfig = {
     appId: '1:1079646422636:web:73b3bec708ef08768f7a49'
     };
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig)
 
 const usersDb = firebase.firestore().collection('users')
 
@@ -70,23 +70,21 @@ auth.onAuthStateChanged(user => {
             }
         })
     } else { // if signed out display sign in button and disable sign out button
-        //document.getElementById('firebaseui-auth-container').style.display = 'block'
         console.log(`user is signed out`)
-        document.getElementById('signOut').classList += 'hide'
-        document.getElementById('signOutm').classList += 'hide'
+        if(!(document.getElementById('signOut').classList.contains('hide')) || !(document.getElementById('signOutm').classList.contain('hide'))){
+            document.getElementById('signOut').classList += ' hide'
+            document.getElementById('signOutm').classList += ' hide'
+        }
+    }
+})
 
+// Add sign off button
+document.addEventListener('click', ({target}) => {
+    if(target.id === 'signOut' || target.id === 'signOutm'){
+        auth.signOut()
         //Remove email from local storage
         localStorage.removeItem('email')
         localStorage.removeItem('myFood')
         localStorage.removeItem('myRecipes')
     }
-})
-
-// Add sign off button
-document.getElementById('signOut').addEventListener('click', e => {
-    auth.signOut()
-})
-
-document.getElementById('signOutm').addEventListener('click', e => {
-    auth.signOut()
 })
